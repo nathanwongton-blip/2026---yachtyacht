@@ -7,6 +7,7 @@ local RemoteEvents = require(ReplicatedStorage.Modules.Network.RemoteEvents)
 
 local PALETTE = GameConfig.Customization.Palette
 local THEMES = GameConfig.Customization.InteriorThemes
+local UI = GameConfig.UI
 local player = Players.LocalPlayer
 
 local CustomizationUIController = {}
@@ -17,8 +18,10 @@ local function button(parent: Instance, text: string, size: UDim2): TextButton
 	b.Text = text
 	b.Font = Enum.Font.GothamBold
 	b.TextSize = 14
-	b.TextColor3 = Color3.new(1, 1, 1)
-	b.BackgroundColor3 = Color3.fromRGB(30, 60, 110)
+	b.TextColor3 = UI.Text
+	b.BackgroundColor3 = UI.Surface
+	b.BorderColor3 = UI.Text
+	b.BorderSizePixel = 0
 	b.Parent = parent
 	return b
 end
@@ -66,8 +69,9 @@ function CustomizationUIController.Start()
 	local panel = Instance.new("Frame")
 	panel.Size = UDim2.fromOffset(300, 260)
 	panel.Position = UDim2.new(0, 12, 1, -320)
-	panel.BackgroundColor3 = Color3.fromRGB(10, 25, 50)
-	panel.BackgroundTransparency = 0.15
+	panel.BackgroundColor3 = UI.Background
+	panel.BackgroundTransparency = UI.BackgroundTransparency
+	panel.BorderSizePixel = 0
 	panel.Visible = false
 	panel.Parent = gui
 	local padding = Instance.new("UIPadding")
@@ -109,12 +113,18 @@ function CustomizationUIController.Start()
 	flag.PlaceholderText = "Flag image asset id"
 	flag.Text = ""
 	flag.ClearTextOnFocus = false
+	flag.Font = Enum.Font.Gotham
+	flag.TextSize = 14
+	flag.TextColor3 = UI.Text
+	flag.PlaceholderColor3 = UI.TextMuted
+	flag.BackgroundColor3 = UI.Surface
+	flag.BorderSizePixel = 0
 	flag.LayoutOrder = 5
 	flag.Parent = panel
 
 	local apply = button(panel, "Apply to active boat", UDim2.fromOffset(200, 32))
 	apply.LayoutOrder = 6
-	apply.BackgroundColor3 = Color3.fromRGB(30, 140, 70)
+	apply.BackgroundColor3 = UI.Success
 	apply.Activated:Connect(function()
 		local boatId = player:GetAttribute("ActiveBoat")
 		if not boatId then

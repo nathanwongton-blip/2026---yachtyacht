@@ -115,4 +115,16 @@ GameConfig.Party = {
 	},
 }
 
+-- Dark UI theme shared by every client controller.
+GameConfig.UI = {
+	Background = Color3.fromRGB(18, 18, 22),
+	BackgroundTransparency = 0.1,
+	Surface = Color3.fromRGB(38, 39, 46),
+	Text = Color3.fromRGB(235, 235, 240),
+	TextMuted = Color3.fromRGB(140, 142, 150),
+	Highlight = Color3.fromRGB(255, 220, 60),
+	Success = Color3.fromRGB(34, 110, 60),
+	Party = Color3.fromRGB(95, 40, 110),
+}
+
 return GameConfig

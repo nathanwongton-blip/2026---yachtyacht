@@ -9,6 +9,7 @@ local GameConfig = require(ReplicatedStorage.Config.GameConfig)
 local RemoteEvents = require(ReplicatedStorage.Modules.Network.RemoteEvents)
 
 local PARTY = GameConfig.Party
+local UI = GameConfig.UI
 local player = Players.LocalPlayer
 
 local PartyPlacementController = {}
@@ -82,8 +83,9 @@ function PartyPlacementController.Start()
 	toggle.Text = "Party Build"
 	toggle.Font = Enum.Font.GothamBold
 	toggle.TextSize = 14
-	toggle.TextColor3 = Color3.new(1, 1, 1)
-	toggle.BackgroundColor3 = Color3.fromRGB(140, 40, 140)
+	toggle.TextColor3 = UI.Text
+	toggle.BackgroundColor3 = UI.Party
+	toggle.BorderSizePixel = 0
 	toggle.Parent = gui
 	toggle.Activated:Connect(function()
 		list.Visible = not list.Visible
@@ -98,8 +100,9 @@ function PartyPlacementController.Start()
 		b.Text = item.Name .. " ($" .. item.Price .. ")"
 		b.Font = Enum.Font.Gotham
 		b.TextSize = 14
-		b.TextColor3 = Color3.new(1, 1, 1)
-		b.BackgroundColor3 = Color3.fromRGB(40, 40, 70)
+		b.TextColor3 = UI.Text
+		b.BackgroundColor3 = UI.Surface
+		b.BorderSizePixel = 0
 		b.Parent = list
 		b.Activated:Connect(function()
 			select(if selectedId == id then nil else id)

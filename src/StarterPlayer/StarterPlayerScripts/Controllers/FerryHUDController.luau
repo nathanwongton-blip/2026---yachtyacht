@@ -4,7 +4,10 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
+local GameConfig = require(ReplicatedStorage.Config.GameConfig)
 local RemoteEvents = require(ReplicatedStorage.Modules.Network.RemoteEvents)
+
+local UI = GameConfig.UI
 
 local player = Players.LocalPlayer
 
@@ -15,9 +18,10 @@ local function label(parent: Instance, position: UDim2, textSize: number): TextL
 	text.AnchorPoint = Vector2.new(0.5, 0)
 	text.Position = position
 	text.Size = UDim2.fromOffset(360, textSize + 16)
-	text.BackgroundColor3 = Color3.fromRGB(10, 30, 60)
-	text.BackgroundTransparency = 0.3
-	text.TextColor3 = Color3.new(1, 1, 1)
+	text.BackgroundColor3 = UI.Background
+	text.BackgroundTransparency = UI.BackgroundTransparency
+	text.BorderSizePixel = 0
+	text.TextColor3 = UI.Text
 	text.TextSize = textSize
 	text.Font = Enum.Font.GothamBold
 	text.Visible = false
@@ -48,7 +52,7 @@ function FerryHUDController.Start()
 	local markerText = Instance.new("TextLabel")
 	markerText.Size = UDim2.fromScale(1, 1)
 	markerText.BackgroundTransparency = 1
-	markerText.TextColor3 = Color3.fromRGB(255, 220, 60)
+	markerText.TextColor3 = UI.Highlight
 	markerText.TextStrokeTransparency = 0
 	markerText.TextScaled = true
 	markerText.Font = Enum.Font.GothamBold
